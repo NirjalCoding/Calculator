@@ -13,6 +13,7 @@ function printOutput(num) {
     }
     else {
     document.getElementById("output-value").innerText=getFormattedNumber(num);
+    }
 }
     function getFormattedNumber(num) {
         if (num == "-") {
@@ -27,7 +28,7 @@ function printOutput(num) {
     }
     var operator = document.getElementsByClassName("operator");
     for (var i = 0; i < operator.length; i++) {
-        operator[i].addEventListener("click", function ()){
+        operator[i].addEventListener("click", function (){
             if (this.id == "clear") {
                 printHistory("");
                 printOutput("");
@@ -35,7 +36,7 @@ function printOutput(num) {
             else if (this.id == 'backspace') {
                 var output=reverseNumberFormat(getOutput()).toString();
                 if (output) {
-                    output = output.substr(0,output.length-1);
+                    output = output.slice(0,output.length-1);
                     printOutput(output);
                 }
             }
@@ -44,11 +45,11 @@ function printOutput(num) {
                 var history=getHistory();
                 if (output == "" && history != "") {
                     if (isNaN(history[history.length - 1])) {
-                        history=history.substr(0,history.length-1);
+                        history=history.slice(0,history.length-1);
                     }
                 }
                 if (output != "" || history != "") {
-                    output= output==""?output:reverseNumberFormat(output);
+                    output= output=="" ?output:reverseNumberFormat(output);
                     history=history+output;
                     if (this.id == "=") {
                         var result=eval(history);
@@ -75,4 +76,4 @@ function printOutput(num) {
             }
         });
     }
-}
+
